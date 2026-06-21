@@ -1,0 +1,5 @@
+.terraform
+.terraform.lock.hcl
+onoff_script.zip
+terraform.tfstate
+terraform.tfstate.backup
