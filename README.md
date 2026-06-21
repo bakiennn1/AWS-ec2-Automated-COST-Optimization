@@ -35,3 +35,12 @@ Dengan menerapkan sistem otomatisasi ini, dampak nyata yang dihasilkan meliputi:
 ---
 
 <img src="images/images(1).jpg" width="600" alt="Tabel Status EC2">
+
+---
+
+## Konfigurasi Jadwal (Simulasi vs Production)
+
+* **Jadwal Simulasi Lokal:** Di dalam file `server.tf`, waktu diatur dalam hitungan menit (Mati setiap 2 menit, Nyala setiap 4 menit) agar hasil di LocalStack bisa langsung divalidasi dengan cepat.
+* **Implementasi Nyata (Production):** Untuk lingkungan asli AWS dengan jadwal kantor, misal (Mati jam 18.00 WIB, Nyala jam 06.00 WIB), ekspresi CloudWatch menggunakan standar waktu UTC dengan format:
+  * **Stop Server (18.00 WIB / 11.00 UTC):** `cron(0 11 ? * MON-FRI *)`
+  * **Start Server (06.00 WIB / 23.00 UTC hari sebelumnya):** `cron(0 23 ? * SUN-THU *)`
